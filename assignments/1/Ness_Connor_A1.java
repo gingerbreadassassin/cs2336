@@ -5,8 +5,7 @@ public class Ness_Connor_A1 {
 
         // setup variables
         Scanner input = new Scanner(System.in);
-        int totr, tott;
-        totr = tott = 0;
+        float tot = 0;
         int[][] years;
         years = new int[5][3];
         years[0][0] = 1974;
@@ -20,18 +19,17 @@ public class Ness_Connor_A1 {
             years[i][1] = input.nextInt();
             System.out.println("How many hours did it take Nyad to swim the distance?");
             years[i][2] = input.nextInt();
-            totr += years[i][1];
-            tott += years[i][2];
         }
 
         System.out.println("+----------------------------------------------------------+");
         System.out.println("| Year  | Distance (miles)  | Time (hours)  | Speed (mph)  |");
         System.out.println("+----------------------------------------------------------+");
         for(int i = 0; i < 5; i++) {
-            System.out.println(" " + years[i][0] + " | " + years[i][1] + " miles   | " + years[i][2] + " hours  | " + (years[i][1] / years[i][2]));
+            System.out.println(" " + years[i][0] + " | " + years[i][1] + " miles   | " + years[i][2] + " hours  | " + ((float)years[i][1] / (float)years[i][2]));
+            tot += ((float)years[i][1] / (float)years[i][2]);
         }
 
-        System.out.println("Diana Nyad's average speed is: " + (totr / tott));
+        System.out.println("Diana Nyad's average speed is: " + tot / 5.0);
 
     }
 }
