@@ -30,7 +30,7 @@ public class Ness_Connor_A2 {
 
         Scanner input = new Scanner(System.in); // setup input
         System.out.printf(
-                "**Welcome to the Comets Books and DVDs Store**%n" +
+                "%n**Welcome to the Comets Books and DVDs Store**%n" +
                 "%n" +
                 "Choose from the following options:%n" +
                 "1 - Browse books inventory (price low to high)%n" +
@@ -48,30 +48,41 @@ public class Ness_Connor_A2 {
         switch(choice) {
             case 1: displayArrays(books, booksprices, "Books");
                 menu();
+                break;
             case 2: displayArrays(dvds, dvdsPrices, "DVDs");
                 menu();
+                break;
             case 3: getInventoryNumber(books, booksprices, "book");
                 menu();
+                break;
             case 4: getInventoryNumber(dvds, dvdsPrices, "dvd");
                 menu();
+                break;
             case 5: displayArrays(cartItems, cartPrices);
                 menu();
+                break;
             case 6: checkout();
                 clearArrays();
                 menu();
+                break;
             case 7: clearArrays();
                 menu();
+                break;
             case 8: break;
             default:
                 System.out.println(
                         "Invalid input! Please use an integer from 1-8."
                 );
                 menu();
+                break;
         }
     }
 
     private static void displayArrays(String[] itemsArray, double[] pricesArray,
                                       String itemType) {
+
+        String[] tempItems = new String[itemsArray.length];
+        double[] tempPrices = new double[pricesArray.length];
 
         // format the data to be readable:
         // %[index$][flags][width][.precision]conversion
@@ -80,9 +91,11 @@ public class Ness_Connor_A2 {
                 "-------------------------------------------------%n",
         itemType);
 
-        int[] invNum = new int[itemsArray.length];
+        int[] invNum = new int[tempItems.length];
         for(int i = 0; i < invNum.length; i++) {
             invNum[i] = i + 1;
+            tempItems[i] = itemsArray[i];
+            tempPrices[i] = pricesArray[i];
         }
 
         // sort arrays by price, low to high using selection sort
@@ -91,33 +104,33 @@ public class Ness_Connor_A2 {
         String minTitle;
         double minValue;
 
-        for (int scan = 0; scan < (itemsArray.length - 1); scan++) {
+        for (int scan = 0; scan < (tempItems.length - 1); scan++) {
             minIndex = scan;
             minInvNum = invNum[scan];
-            minTitle = itemsArray[scan];
-            minValue = pricesArray[scan];
+            minTitle = tempItems[scan];
+            minValue = tempPrices[scan];
 
             for (int i = scan + 1; i < invNum.length; i++) {
-                if (pricesArray[i] < minValue) {
+                if (tempPrices[i] < minValue) {
                     minInvNum = invNum[i];
-                    minTitle = itemsArray[i];
-                    minValue = pricesArray[i];
+                    minTitle = tempItems[i];
+                    minValue = tempPrices[i];
                     minIndex = i;
                 }
             }
 
             invNum[minIndex] = invNum[scan];
-            itemsArray[minIndex] = itemsArray[scan];
-            pricesArray[minIndex] = pricesArray[scan];
+            tempItems[minIndex] = tempItems[scan];
+            tempPrices[minIndex] = tempPrices[scan];
 
             invNum[scan] = minInvNum;
-            itemsArray[scan] = minTitle;
-            pricesArray[scan] = minValue;
+            tempItems[scan] = minTitle;
+            tempPrices[scan] = minValue;
         }
 
-        for (int x = 0; x < itemsArray.length; x++) {
-            String price = "$" + df.format(pricesArray[x]);
-            System.out.printf("%-20d%-16s%13s%n", invNum[x], itemsArray[x],
+        for (int x = 0; x < tempItems.length; x++) {
+            String price = "$" + df.format(tempPrices[x]);
+            System.out.printf("%-20d%-16s%13s%n", invNum[x], tempItems[x],
                     price);
         }
         System.out.println();
