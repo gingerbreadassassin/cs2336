@@ -66,7 +66,15 @@ public class Ness_Connor_A2 {
         );
 
         // Get the user's input
-        int choice = input.nextInt();
+        int choice;
+
+        // Make sure the user's input is an integer
+        while(!input.hasNextInt()){
+            System.out.println("Please use an integer.");
+            input.next();
+        }
+
+        choice = input.nextInt();
 
         switch(choice) {
             // Display the store's inventory of books and dvds, respectively.
@@ -249,6 +257,13 @@ public class Ness_Connor_A2 {
                             " to add to cart."
             );
             System.out.println("Enter -1 to return to the main menu.");
+
+            // Make sure user's input is an integer
+            while(!input.hasNextInt()){
+                System.out.println("Please use an integer.");
+                input.next();
+            }
+
             choice = input.nextInt();
 
         } while(choice != -1 && ((choice > items.length + 1) || choice < 1));
