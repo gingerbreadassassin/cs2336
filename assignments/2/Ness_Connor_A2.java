@@ -17,7 +17,10 @@ public class Ness_Connor_A2 {
             "Bambi", "Frozen"};
     private static double[] dvdsPrices = {19.99, 24.99, 17.99, 21.99, 24.99};
 
-    // private String[] cartItems = {};
+    private static DecimalFormat df = new DecimalFormat("#.00");
+
+    private static String[] cartItems = {};
+    private static double[] cartPrices = {};
 
     public static void main(String[] args){
         menu();
@@ -40,20 +43,23 @@ public class Ness_Connor_A2 {
                 "8 - Exit store%n"
         );
 
-        switch(input.nextInt()) {
+        int choice = input.nextInt();
+
+        switch(choice) {
             case 1: displayArrays(books, booksprices, "Books");
                 menu();
             case 2: displayArrays(dvds, dvdsPrices, "DVDs");
                 menu();
-            case 3: // add book
+            case 3: getInventoryNumber(books, booksprices, "book");
                 menu();
-            case 4: // add DVD
+            case 4: getInventoryNumber(dvds, dvdsPrices, "dvd");
                 menu();
-            case 5: // view kart
+            case 5: displayArrays(cartItems, cartPrices);
                 menu();
-            case 6: // checkout
+            case 6: checkout();
+                clearArrays();
                 menu();
-            case 7: // cancel order
+            case 7: clearArrays();
                 menu();
             case 8: break;
             default:
@@ -109,12 +115,94 @@ public class Ness_Connor_A2 {
             pricesArray[scan] = minValue;
         }
 
-        DecimalFormat df = new DecimalFormat("#.00");
         for (int x = 0; x < itemsArray.length; x++) {
             String price = "$" + df.format(pricesArray[x]);
             System.out.printf("%-20d%-16s%13s%n", invNum[x], itemsArray[x],
                     price);
         }
         System.out.println();
+    }
+
+    private static void displayArrays(String[] items, double[] prices) {
+
+        if(items.length == 0) {
+            System.out.println("Your cart is empty.");
+        }
+        else {
+            System.out.println("Items             Prices");
+            System.out.println("------------------------");
+
+            for (int x = 0; x < items.length; x++) {
+                String price = "$" + df.format(prices[x]);
+                System.out.printf("%-15s%9s%n", items[x],
+                        price);
+            }
+            System.out.println("------------------------");
+            System.out.printf(
+                    "Total + Tax %12s%n", getTotal(prices)
+            );
+        }
+
+    }
+
+    private static void getInventoryNumber(String[] items,
+                                           double[] prices, String item) {
+
+        Scanner input = new Scanner(System.in); // setup input
+        int choice;
+
+        do {
+            System.out.println(
+                    "Please enter the inventory number of the " + item +
+                            " to add to cart."
+            );
+            System.out.println("Enter -1 to return to the main menu.");
+            choice = input.nextInt();
+
+        } while(choice != -1 && ((choice > items.length + 1) || choice < 1));
+
+        --choice;
+        if(0 <= choice && choice <= items.length) {
+            addToCart(items[choice], prices[choice]);
+        }
+    }
+
+    private static void addToCart(String itemName, double itemPrice) {
+        String[] tempCartItems = new String[cartItems.length + 1];
+        double[] tempCartPrices = new double[cartItems.length + 1];
+
+        int i;
+
+        for(i = 0; i < cartItems.length; i++) {
+            tempCartItems[i] = cartItems[i];
+            tempCartPrices[i] = cartPrices[i];
+        }
+
+        tempCartItems[i] = itemName;
+        tempCartPrices[i] = itemPrice;
+
+        cartItems = tempCartItems;
+        cartPrices = tempCartPrices;
+    }
+
+    private static void checkout() {
+        System.out.printf(
+                "Total + Tax %12s%n", getTotal(cartPrices)
+        );
+    }
+
+    private static void clearArrays() {
+        cartItems = new String[0];
+        cartPrices = new double[0];
+    }
+
+    private static String getTotal(double[] prices) {
+        double dTotal = 0.0;
+        for(int i = 0; i < prices.length; i++){
+            dTotal += prices[i];
+        }
+
+        dTotal += dTotal*0.0825;
+        return "$" + df.format(dTotal);
     }
 }
