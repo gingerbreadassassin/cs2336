@@ -211,8 +211,8 @@ public class Ness_Connor_A2 {
 
     private static String getTotal(double[] prices) {
         double dTotal = 0.0;
-        for(int i = 0; i < prices.length; i++){
-            dTotal += prices[i];
+        for (double price : prices) {
+            dTotal += price;
         }
 
         dTotal += dTotal*0.0825;
