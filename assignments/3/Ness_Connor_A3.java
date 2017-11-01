@@ -2,8 +2,8 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Ness_Connor_A3 {
-    private static ArrayList<Book> books = new ArrayList<Book>();
-    private static ArrayList<DVD> dvds = new ArrayList<DVD>();
+    private static ArrayList<Book> books = new ArrayList<>();
+    private static ArrayList<DVD> dvds = new ArrayList<>();
 
     private static Scanner input = new Scanner(System.in);
 
@@ -34,6 +34,7 @@ public class Ness_Connor_A3 {
         }
 
         choice = input.nextInt();
+        input.nextLine();
 
         switch(choice) {
             case 1: newBook();
@@ -55,10 +56,10 @@ public class Ness_Connor_A3 {
                 break;
             // Display the total and clear the user's cart
             case 6: // display catalog
-                for(int i = 0; i <= books.size(); i++){
+                for(int i = 0; i < books.size(); i++){
                     System.out.println(books.get(i).toString());
                 }
-                for(int i = 0; i <= dvds.size(); i++){
+                for(int i = 0; i < dvds.size(); i++){
                     System.out.println(dvds.get(i).toString());
                 }
                 menu();
@@ -77,66 +78,78 @@ public class Ness_Connor_A3 {
     }
 
     private static void newBook() {
-        System.out.println("Please enter the title of the book:");
+        // String title = getLine("Please enter the title of the book: ");
+        System.out.print("Please enter the title of the book: ");
         String title = input.nextLine();
-        System.out.println("Please enter the price of the book:");
-        double price = getFloatInput();
-        System.out.println("Please enter the Author of the book:");
+        double price = getFloatInput("Please enter the price of the book: ");
+        // String author = getLine("Please enter the Author of the book: ");
+        System.out.print("Please enter the Author of the book: ");
         String author = input.nextLine();
-        System.out.println("Please enter the ISBN of the book:");
-        int isbn = getIntInput();
+        int isbn = getIntInput("Please enter the ISBN of the book: ");
         books.add(new Book(title, price, author, isbn));
     }
 
     private static void newAudioBook() {
-        System.out.println("Please enter the title of the book:");
-        String title = input.nextLine();
-        System.out.println("Please enter the price of the book:");
-        double price = getFloatInput();
-        System.out.println("Please enter the Author of the book:");
-        String author = input.nextLine();
-        System.out.println("Please enter the ISBN of the book:");
-        int isbn = getIntInput();
-        System.out.println("Please enter the runtime of the book:");
-        double runtime = getFloatInput();
+        String title = getLine("Please enter the title of the book: ");
+        double price = getFloatInput("Please enter the price of the book: ");
+        String author = getLine("Please enter the Author of the book: ");
+        int isbn = getIntInput("Please enter the ISBN of the book: ");
+        double runtime = getFloatInput("Please enter the runtime of the book: ");
         books.add(new AudioBook(title, price, author, isbn, runtime));
     }
 
     private static void newDVD() {
-        System.out.println("Please enter the title of the DVD:");
-        String title = input.nextLine();
-        System.out.println("Please enter the price of the DVD:");
-        double price = getFloatInput();
-        System.out.println("Please enter the Director of the DVD:");
-        String director = input.nextLine();
-        System.out.println("Please enter the year of the DVD:");
-        int year = getIntInput();
-        System.out.println("Please enter the DVDCode of the DVD:");
-        int dvdcode = getIntInput();
+        String title = getLine("Please enter the title of the DVD: ");
+        double price = getFloatInput("Please enter the price of the DVD: ");
+        String director = getLine("Please enter the Director of the DVD: ");
+        int year = getIntInput("Please enter the year of the DVD: ");
+        int dvdcode = getIntInput("Please enter the DVDCode of the DVD: ");
         dvds.add(new DVD(title, price, director, year, dvdcode));
     }
 
-    private static int getIntInput() {
-        int number;
+    private static String getLine(String msg) {
+        String text;
+        //input.next();
+        System.out.println();
         do {
-            System.out.println("Please input an integer greater than 0:");
+            System.out.print(msg);
+            text = input.nextLine();
+        } while(!input.hasNextLine());
+        System.out.println();
+        return text;
+    }
+
+    private static int getIntInput(String msg) {
+        int number;
+        input.next();
+        System.out.println();
+        do {
+            System.out.print(msg);
             while (!input.hasNextInt()) {
-                System.out.println("Please input an integer greater than 0:");
+                System.out.print("Please input an integer greater than 0: ");
+                input.next();
+                System.out.println();
             }
             number = input.nextInt();
         } while (number < 1);
+        System.out.println();
         return number;
     }
 
-    private static float getFloatInput() {
+    private static float getFloatInput(String msg) {
         float number;
+        input.next();
+        System.out.println();
         do {
-            System.out.println("Please input a number greater than 0:");
+            System.out.print(msg);
             while (!input.hasNextFloat()) {
-                System.out.println("Please input a number greater than 0:");
+                System.out.print("Please input a number greater than 0: ");
+                input.next();
+                System.out.println();
             }
             number = input.nextFloat();
         } while (number <= 0);
+        System.out.println();
         return number;
     }
 }
