@@ -1,8 +1,9 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Ness_Connor_A3 {
-    private static Book[] books;
-    private static DVD[] dvds;
+    private static ArrayList<Book> books = new ArrayList<Book>();
+    private static ArrayList<DVD> dvds = new ArrayList<DVD>();
 
     private static Scanner input = new Scanner(System.in);
 
@@ -35,14 +36,14 @@ public class Ness_Connor_A3 {
         choice = input.nextInt();
 
         switch(choice) {
-            case 1: addBook();
+            case 1: newBook();
                 menu();
                 break;
-            case 2: addAudioBook();
+            case 2: newAudioBook();
                 menu();
                 break;
             // Add the user's desired book/dvd to their cart
-            case 3: addDVD();
+            case 3: newDVD();
                 menu();
                 break;
             case 4: // remove book
@@ -54,11 +55,11 @@ public class Ness_Connor_A3 {
                 break;
             // Display the total and clear the user's cart
             case 6: // display catalog
-                for(int i = 0; i <= books.length; i++){
-                    System.out.println(books[i].toString());
+                for(int i = 0; i <= books.size(); i++){
+                    System.out.println(books.get(i).toString());
                 }
-                for(int i = 0; i <= dvds.length; i++){
-                    System.out.println(dvds[i].toString());
+                for(int i = 0; i <= dvds.size(); i++){
+                    System.out.println(dvds.get(i).toString());
                 }
                 menu();
                 break;
@@ -75,7 +76,7 @@ public class Ness_Connor_A3 {
         }
     }
 
-    private static void addBook() {
+    private static void newBook() {
         System.out.println("Please enter the title of the book:");
         String title = input.nextLine();
         System.out.println("Please enter the price of the book:");
@@ -84,10 +85,10 @@ public class Ness_Connor_A3 {
         String author = input.nextLine();
         System.out.println("Please enter the ISBN of the book:");
         int isbn = getIntInput();
-        insertBook(new Book(title, price, author, isbn));
+        books.add(new Book(title, price, author, isbn));
     }
 
-    private static void addAudioBook() {
+    private static void newAudioBook() {
         System.out.println("Please enter the title of the book:");
         String title = input.nextLine();
         System.out.println("Please enter the price of the book:");
@@ -98,10 +99,10 @@ public class Ness_Connor_A3 {
         int isbn = getIntInput();
         System.out.println("Please enter the runtime of the book:");
         double runtime = getFloatInput();
-        insertBook(new AudioBook(title, price, author, isbn, runtime));
+        books.add(new AudioBook(title, price, author, isbn, runtime));
     }
 
-    private static void addDVD() {
+    private static void newDVD() {
         System.out.println("Please enter the title of the DVD:");
         String title = input.nextLine();
         System.out.println("Please enter the price of the DVD:");
@@ -112,31 +113,7 @@ public class Ness_Connor_A3 {
         int year = getIntInput();
         System.out.println("Please enter the DVDCode of the DVD:");
         int dvdcode = getIntInput();
-        insertDVD(new DVD(title, price, director, year, dvdcode));
-    }
-
-    private static void insertBook(Book book) {
-        Book[] newbooks = new Book[books.length + 1];
-        int i = 0;
-        while(book.getIsbn() > books[i].getIsbn()) {
-            i++;
-        }
-        System.arraycopy(books, 0, newbooks, 0, i - 1);
-        System.arraycopy(books, i + 1, newbooks, i + 1, newbooks.length - i);
-        newbooks[i] = book;
-        books = newbooks;
-    }
-
-    private static void insertDVD(DVD dvd) {
-        DVD[] newdvds = new DVD[dvds.length + 1];
-        int i = 0;
-        while(dvd.getDvdcode() > dvds[i].getDvdcode()) {
-            i++;
-        }
-        System.arraycopy(dvds, 0, newdvds, 0, i - 1);
-        System.arraycopy(dvds, i + 1, newdvds, i + 1, newdvds.length - i);
-        newdvds[i] = dvd;
-        dvds = newdvds;
+        dvds.add(new DVD(title, price, director, year, dvdcode));
     }
 
     private static int getIntInput() {
