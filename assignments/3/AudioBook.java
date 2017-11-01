@@ -12,11 +12,6 @@ public class  AudioBook extends Book {
         runningTime = RunningTime;
     }
 
-    public AudioBook(Book book, double RunningTime) {
-        super(book.getTitle(), book.getPrice(), book.getAuthor(), book.getIsbn());
-        runningTime = RunningTime;
-    }
-
     @Override
     public double getPrice() {
         return super.getPrice() * 0.1;
@@ -28,6 +23,8 @@ public class  AudioBook extends Book {
 
     @Override
     public String toString() {
-        return super.toString() + " | RunningTime: " + runningTime;
+        return "Title: " + super.getTitle() + " | Author: " + super.getAuthor()
+                + " | Price: " + (super.getPrice()*0.9) + " | ISBN: " +
+                super.getIsbn();
     }
 }
