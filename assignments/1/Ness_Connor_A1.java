@@ -35,7 +35,7 @@ public class Ness_Connor_A1 {
 
         // for each year, gather data from user
         for(int i = 0; i < 5; i++) {
-            System.out.println("Enter the distance Diana Nyad Swam input " +
+            System.out.println("Enter the distance Diana Nyad Swam in " +
                     (int)swimData[i][0] + ": ");
             swimData[i][1] = input.nextFloat();
             System.out.println("How many hours did it take Nyad to swim the distance?");
