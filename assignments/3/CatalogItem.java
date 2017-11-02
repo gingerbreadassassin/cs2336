@@ -1,3 +1,8 @@
+/*
+Filename:   CatalogItem.java
+Author:     Connor Ness
+Date:       November 1, 2017
+ */
 
 public abstract class CatalogItem {
     private String title;

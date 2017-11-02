@@ -1,4 +1,13 @@
+/*
+Filename:   Book.java
+Author:     Connor Ness
+Date:       November 1, 2017
+ */
+import java.text.DecimalFormat;
+
 class Book extends CatalogItem {
+    // This DecimalFormat object makes displaying doubles as dollars convenient.
+    private static DecimalFormat df = new DecimalFormat("#.00");
     private String author;
     private int isbn;
 
@@ -25,6 +34,7 @@ class Book extends CatalogItem {
     @Override
     public String toString() {
         return "Title: " + super.getTitle() + " | Author: " + author
-                + " | Price: " + super.getPrice() + " | ISBN: " + isbn;
+                + " | Price: $" + df.format(super.getPrice()) + " | ISBN: " +
+                isbn;
     }
 }

@@ -1,4 +1,14 @@
+/*
+Filename:   DVD.java
+Author:     Connor Ness
+Date:       November 1, 2017
+ */
+
+import java.text.DecimalFormat;
+
 class DVD extends CatalogItem {
+    // This DecimalFormat object makes displaying doubles as dollars convenient.
+    private static DecimalFormat df = new DecimalFormat("#.00");
     private String director;
     private int year, dvdcode;
 
@@ -31,7 +41,7 @@ class DVD extends CatalogItem {
     @Override
     public String toString() {
         return "Title: " + super.getTitle() + " | Director: " + director
-                + " | Price: " + super.getPrice() + " | Year: " + year +
-                " | DVDCode: " + dvdcode;
+                + " | Price: $" + df.format(super.getPrice()) + " | Year: " +
+                year + " | DVDCode: " + dvdcode;
     }
 }

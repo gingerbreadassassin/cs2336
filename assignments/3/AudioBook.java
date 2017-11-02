@@ -1,4 +1,14 @@
+/*
+Filename:   AudioBook.java
+Author:     Connor Ness
+Date:       November 1, 2017
+ */
+
+import java.text.DecimalFormat;
+
 public class  AudioBook extends Book {
+    // This DecimalFormat object makes displaying doubles as dollars convenient.
+    private static DecimalFormat df = new DecimalFormat("#.00");
     private double runningTime;
 
     public AudioBook() {
@@ -14,7 +24,7 @@ public class  AudioBook extends Book {
 
     @Override
     public double getPrice() {
-        return super.getPrice() * 0.1;
+        return super.getPrice() * 0.9;
     }
 
     public double getRunningTime() {
@@ -24,7 +34,7 @@ public class  AudioBook extends Book {
     @Override
     public String toString() {
         return "Title: " + super.getTitle() + " | Author: " + super.getAuthor()
-                + " | Price: " + (super.getPrice()*0.9) + " | ISBN: " +
-                super.getIsbn();
+                + " | Price: $" + df.format(super.getPrice()*0.9) +
+                " | ISBN: " + super.getIsbn() +" | RunningTime: " + runningTime;
     }
 }
