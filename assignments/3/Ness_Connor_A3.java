@@ -20,6 +20,8 @@ public class Ness_Connor_A3 {
     private static ArrayList<Book> books = new ArrayList<>();
     private static ArrayList<DVD> dvds = new ArrayList<>();
 
+    private static Scanner input = new Scanner(System.in);
+
     public static void main(String[] args) {menu();}
 
     private static void menu() {
@@ -215,8 +217,7 @@ public class Ness_Connor_A3 {
 //    getStringInput gets input from the console. It makes sure that the
 //            input is not empty, then returns the string.
     private static String getStringInput() {
-        Scanner in = new Scanner(System.in);
-        String text = in.nextLine();
+        String text = input.nextLine();
         if(text.isEmpty()) {
             System.out.println("Please enter non-empty input: ");
             return getStringInput();
@@ -228,9 +229,8 @@ public class Ness_Connor_A3 {
 //            the input is positive.
     private static int getIntInput(String msg) {
         int number;
-        Scanner in = new Scanner(System.in);
         try {
-            number = Integer.parseInt(in.nextLine());
+            number = Integer.parseInt(input.nextLine());
         }
         catch (NumberFormatException e) {
             System.out.println(msg);
@@ -242,9 +242,8 @@ public class Ness_Connor_A3 {
 //    getDoubleInput does the same as getIntInput, but for doubles
     private static double getDoubleInput(String msg) {
         double number;
-        Scanner in = new Scanner(System.in);
         try {
-            number = Double.parseDouble(in.nextLine());
+            number = Double.parseDouble(input.nextLine());
         } catch (NumberFormatException e) {
             System.out.println(msg);
             return getDoubleInput(msg);

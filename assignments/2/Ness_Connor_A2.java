@@ -165,7 +165,7 @@ public class Ness_Connor_A2 {
         //  by one each iteration, so the first element is analyzed only once.
         for (int scan = 0; scan < (tempItems.length - 1); scan++) {
             // Set all values to the item currently being analyzed. If it
-            //  happens to be the smallest, it is already in the correct place
+            //  happens to be the smallest, it is already input the correct place
             //  and no swaps will be made.
             minIndex = scan;
             minInvNum = invNum[scan];
@@ -184,20 +184,20 @@ public class Ness_Connor_A2 {
                 }
             }
 
-            // Set the element in each array corresponding to the cheapest item
+            // Set the element input each array corresponding to the cheapest item
             //  to whatever element of the array we began scanning.
             invNum[minIndex] = invNum[scan];
             tempItems[minIndex] = tempItems[scan];
             tempPrices[minIndex] = tempPrices[scan];
 
-            // Set the element in each array we began scanning at to the value
+            // Set the element input each array we began scanning at to the value
             //  of the cheapest item.
             invNum[scan] = minInvNum;
             tempItems[scan] = minTitle;
             tempPrices[scan] = minValue;
         }
 
-        // Display each element of the arrays in a tabular format.
+        // Display each element of the arrays input a tabular format.
         for (int x = 0; x < tempItems.length; x++) {
             String price = "$" + df.format(tempPrices[x]);
             System.out.printf("%-20d%-16s%13s%n", invNum[x], tempItems[x],
@@ -217,14 +217,14 @@ public class Ness_Connor_A2 {
             System.out.println("Your cart is empty.");
         }
 
-        // Otherwise, display the cart's contents in a neat tabular format.
+        // Otherwise, display the cart's contents input a neat tabular format.
         else {
 
             // Print the header
             System.out.println("Items             Prices");
             System.out.println("------------------------");
 
-            // Print each item in the cart
+            // Print each item input the cart
             for (int x = 0; x < items.length; x++) {
                 String price = "$" + df.format(prices[x]);
                 System.out.printf("%-15s%9s%n", items[x],
@@ -282,7 +282,7 @@ public class Ness_Connor_A2 {
     //  represent the title and price of the item. As the cart may be of
     //  variable length, temporary arrays are created which are 1 element longer
     //  than the current cart arrays. The contents of the current arrays are
-    //  then copied into the temporary arrays, the new item placed in the last
+    //  then copied into the temporary arrays, the new item placed input the last
     //  element, and finally the current arrays are reassigned to the temporary
     //  arrays.
     private static void addToCart(String itemName, double itemPrice) {
