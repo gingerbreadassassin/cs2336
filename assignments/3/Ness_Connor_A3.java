@@ -236,6 +236,10 @@ public class Ness_Connor_A3 {
             System.out.println(msg);
             return getIntInput(msg);
         }
+        if(number < 1) {
+            System.out.println("Please enter an integer greater than 0!");
+            return getIntInput(msg);
+        }
         return number;
     }
 
@@ -246,6 +250,10 @@ public class Ness_Connor_A3 {
             number = Double.parseDouble(input.nextLine());
         } catch (NumberFormatException e) {
             System.out.println(msg);
+            return getDoubleInput(msg);
+        }
+        if(number < 1) {
+            System.out.println("Please enter a number greater than 0!");
             return getDoubleInput(msg);
         }
         return number;
