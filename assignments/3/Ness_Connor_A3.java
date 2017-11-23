@@ -85,7 +85,7 @@ public class Ness_Connor_A3 {
         String title = getStringInput();
         double price = getDoubleInput("Please enter the price of" +
                 " the book: ");
-        System.out.print("Please enter the Author of the book: ");
+        System.out.println("Please enter the Author of the book: ");
         String author = getStringInput();
         int isbn = getIntInput("Please enter the ISBN of the book: ");
         boolean exists = false;
@@ -108,9 +108,11 @@ public class Ness_Connor_A3 {
 //            to the main menu. If it does not, the item is added to the
 //            books arraylist.
     private static void newAudioBook() {
+        System.out.println("Please enter the title of the book: ");
         String title = getStringInput();
         double price = getDoubleInput("Please enter the price of" +
                 " the book: ");
+        System.out.println("Please enter the Author of the book: ");
         String author = getStringInput();
         int isbn = getIntInput("Please enter the ISBN of the book: ");
         double runtime = getDoubleInput("Please enter the runtime of" +
@@ -135,9 +137,11 @@ public class Ness_Connor_A3 {
 //            to the main menu. If it does not, the item is added to the
 //            dvds arraylist.
     private static void newDVD() {
+        System.out.println("Please enter the title of the DVD: ");
         String title = getStringInput();
         double price = getDoubleInput("Please enter the price of" +
                 " the DVD: ");
+        System.out.println("Please enter the director of the DVD: ");
         String director = getStringInput();
         int year = getIntInput("Please enter the year of the DVD: ");
         int dvdcode = getIntInput("Please enter the DVDCode of the DVD: ");
@@ -220,7 +224,7 @@ public class Ness_Connor_A3 {
         String text = input.nextLine();
         if(text.isEmpty()) {
             System.out.println("Please enter non-empty input: ");
-            return getStringInput();
+            text = getStringInput();
         }
         return text;
     }
@@ -229,11 +233,11 @@ public class Ness_Connor_A3 {
 //            the input is positive.
     private static int getIntInput(String msg) {
         int number;
+        System.out.println(msg);
         try {
             number = Integer.parseInt(input.nextLine());
         }
         catch (NumberFormatException e) {
-            System.out.println(msg);
             return getIntInput(msg);
         }
         if(number < 1) {
@@ -246,10 +250,10 @@ public class Ness_Connor_A3 {
 //    getDoubleInput does the same as getIntInput, but for doubles
     private static double getDoubleInput(String msg) {
         double number;
+        System.out.println(msg);
         try {
             number = Double.parseDouble(input.nextLine());
         } catch (NumberFormatException e) {
-            System.out.println(msg);
             return getDoubleInput(msg);
         }
         if(number < 1) {
