@@ -1,12 +1,12 @@
-public class Node {
-    private Node parent;
-    private Node leftChild;
-    private Node rightChild;
+public class CustNode {
+    private CustNode parent;
+    private CustNode leftChild;
+    private CustNode rightChild;
 
     private String letters;
     private int weight;
 
-    public Node() {
+    public CustNode() {
         parent = null;
         leftChild = null;
         rightChild = null;
@@ -14,7 +14,7 @@ public class Node {
         weight = 0;
     }
 
-    public Node(String ltr) {
+    public CustNode(String ltr) {
         parent = null;
         leftChild = null;
         rightChild = null;
@@ -26,19 +26,19 @@ public class Node {
         return weight;
     }
 
-    public boolean hasChild(Node node) {
+    public boolean hasChild(CustNode custNode) {
         return rightChild != null || leftChild != null;
     }
 
-    public void setParent(Node parent) {
+    public void setParent(CustNode parent) {
         this.parent = parent;
     }
 
-    public void setLeftChild(Node leftChild) {
+    public void setLeftChild(CustNode leftChild) {
         this.leftChild = leftChild;
     }
 
-    public void setRightChild(Node rightChild) {
+    public void setRightChild(CustNode rightChild) {
         this.rightChild = rightChild;
     }
 
@@ -49,4 +49,13 @@ public class Node {
     public void setLetters(String letters) {
         this.letters = letters;
     }
+
+    public String getLetters() {
+        return letters;
+    }
+
+    public String toString() {
+        return letters + " | " + weight;
+    }
 }
+
