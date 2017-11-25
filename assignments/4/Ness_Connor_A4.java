@@ -17,11 +17,50 @@ public class Ness_Connor_A4 {
         sortList(custNodes);
         printList(custNodes);
 
+        System.out.println("Ready to begin. Press enter to continue...");
+        input.nextLine();
 
+        while(custNodes.size() > 1) {
+            CustNode x = custNodes.get(0);
+            custNodes.remove(0);
+            int i = 0;
+            while(x.getLevel() > custNodes.get(i).getLevel()
+                    && i < custNodes.size() - 1) {
+                i++;
+            }
+            CustNode y = custNodes.get(i);
+            custNodes.remove(i);
+            CustNode z;
+            if(x.getLevel() >= y.getLevel()) {
+                z = new CustNode(x.getLetters()+y.getLetters(), x.getLevel()+1);
+                z.setLeftChild(x);
+                z.setRightChild(y);
+            }
+            else {
+                z = new CustNode(y.getLetters()+x.getLetters(), y.getLevel()+1);
+                z.setLeftChild(y);
+                z.setRightChild(x);
+            }
 
+            z.setWeight(x.getWeight()+y.getWeight());
+            x.setParent(z);
+            y.setParent(z);
+            System.out.println("Combined node " + x.getLetters() +
+                    " weight: " + x.getWeight() + " with node " + y.getLetters()
+                    + " weight: " + y.getWeight() + " to produce node " +
+                    z.getLetters() + " weight: " + z.getWeight());
+            custNodes.add(z);
+            sortList(custNodes);
+            printList(custNodes);
 
+            if(custNodes.size() == 1) {
+                break;
+            }
 
-
+            System.out.println("Ready for the next step. Press enter to continue...");
+            input.nextLine();
+        }
+        System.out.println("We are done.");
     }
 
 
@@ -45,8 +84,7 @@ public class Ness_Connor_A4 {
                     minCustNode = list.get(i);
                 }
                 if(list.get(i).getWeight() == minCustNode.getWeight()) {
-                    if (list.get(i).getLetters().compareTo(
-                            minCustNode.getLetters()) < 0) {
+                    if (list.get(i).getLetters().hashCode() < minCustNode.getLetters().hashCode()) {
                         minIndex = i;
                         minCustNode = list.get(i);
                     }
@@ -67,7 +105,7 @@ public class Ness_Connor_A4 {
                 return;
             }
         }
-        custNodes.add(new CustNode(String.valueOf(ch)));
+        custNodes.add(new CustNode(String.valueOf(ch), 0));
     }
 
 //    getStringInput gets input from the console. It makes sure that the

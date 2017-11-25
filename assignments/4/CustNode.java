@@ -5,6 +5,7 @@ public class CustNode {
 
     private String letters;
     private int weight;
+    private int level;
 
     public CustNode() {
         parent = null;
@@ -12,14 +13,16 @@ public class CustNode {
         rightChild = null;
         letters = "";
         weight = 0;
+        level = 0;
     }
 
-    public CustNode(String ltr) {
+    public CustNode(String ltr, int lvl) {
         parent = null;
         leftChild = null;
         rightChild = null;
         letters = ltr;
         weight = 1;
+        level = lvl;
     }
 
     public int getWeight() {
@@ -56,6 +59,10 @@ public class CustNode {
 
     public String toString() {
         return letters + " | " + weight;
+    }
+
+    public int getLevel() {
+        return level;
     }
 }
 
