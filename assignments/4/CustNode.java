@@ -1,11 +1,17 @@
+/*
+Filename: CustNode.java
+Author: Connor Ness
+Date: November 26, 2017
+*/
+
 public class CustNode {
     private CustNode parent;
     private CustNode leftChild;
     private CustNode rightChild;
 
     private String letters;
-    private int weight;
-    private int level;
+    private int weight; // frequency of character in string
+    private int level; // how far from the bottom the node is
 
     public CustNode() {
         parent = null;
