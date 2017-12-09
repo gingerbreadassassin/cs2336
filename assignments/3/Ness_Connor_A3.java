@@ -229,6 +229,7 @@ public class Ness_Connor_A3 {
         return text;
     }
 
+    @SuppressWarnings("Duplicates")
 //    getIntInput uses the nextLine and parses into an int, and makes sure
 //            the input is positive.
     private static int getIntInput(String msg) {
@@ -247,6 +248,7 @@ public class Ness_Connor_A3 {
         return number;
     }
 
+    @SuppressWarnings("Duplicates")
 //    getDoubleInput does the same as getIntInput, but for doubles
     private static double getDoubleInput(String msg) {
         double number;
