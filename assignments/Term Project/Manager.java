@@ -1,31 +1,18 @@
-/*
-Filename:   Ness_Connor_A3.java
-Author:     Connor Ness
-Date:       November 1, 2017
-
-This program simulates the manager's view of the online store explored in the
-    previous assignment. It demonstrates the use of different classes, and
-    exhibits inheritance and polymorphism.
-
-Two ArrayLists are used to contain three types of objects. Because AudioBooks
-    are child classes of Books, they qualify as that type, and may be contained
-    in the same list.
- */
-
-import java.util.Scanner;
 import java.util.ArrayList;
 @SuppressWarnings("Duplicates")
-public class Ness_Connor_A3 {
-    // Using included ArrayList as directed by instructions
-    private static ArrayList<Book> books = new ArrayList<>();
-    private static ArrayList<DVD> dvds = new ArrayList<>();
+public class Manager {
 
-    private static Scanner input = new Scanner(System.in);
+    private Validator input;
+    private ArrayList<Book> books;
+    private ArrayList<DVD> dvds;
 
-    public static void main(String[] args) {menu();}
+    public Manager(Validator i, ArrayList<Book> b, ArrayList<DVD> d){
+        input = i;
+        books = b;
+        dvds = d;
+    }
 
-    private static void menu() {
-
+    public void menu() {
         System.out.printf(
                 "%n**Welcome to the Comets Books and DVDs Store " +
                         "(Catalog Section)**%n" +
@@ -37,33 +24,40 @@ public class Ness_Connor_A3 {
                         "4 - Remove Book%n" +
                         "5 - Remove DVD%n" +
                         "6 - Display Catalog%n" +
-                        "9 - Exit store%n"
+                        "7 - Create backup file%n" +
+                        "9 - Exit Catalog section%n"
         );
+        int choice = input.getIntInput("");
 
-        // Get the user's input
-        int choice = getIntInput("");
 
-        switch(choice) {
-            case 1: newBook();
+        switch (choice) {
+            case 1:
+                newBook();
                 menu();
                 break;
-            case 2: newAudioBook();
+            case 2:
+                newAudioBook();
                 menu();
                 break;
-            case 3: newDVD();
+            case 3:
+                newDVD();
                 menu();
                 break;
-            case 4: removeBook();
+            case 4:
+                removeBook();
                 menu();
                 break;
-            case 5: removeDVD();
+            case 5:
+                removeDVD();
                 menu();
                 break;
-            case 6: dispCat();
+            case 6:
+                dispCat();
                 menu();
                 break;
             // Exit the program
-            case 9: break;
+            case 9:
+                break;
             // In case the user enters an invalid input, a message stating as
             //  much is displayed, and returns to the menu.
             default:
@@ -74,20 +68,19 @@ public class Ness_Connor_A3 {
                 break;
         }
     }
-
 //    newBook creates a new object of type "Book". It asks the user
 //            to enter the parameters. It then checks to see if the ISBN
 //            already exists. If it does, it tells the user and returns
 //            to the main menu. If it does not, the item is added to the
 //            books arraylist.
-    private static void newBook() {
+    private void newBook() {
         System.out.println("Please enter the title of the book: ");
-        String title = getStringInput();
-        double price = getDoubleInput("Please enter the price of" +
+        String title = input.getStringInput();
+        double price = input.getDoubleInput("Please enter the price of" +
                 " the book: ");
         System.out.println("Please enter the Author of the book: ");
-        String author = getStringInput();
-        int isbn = getIntInput("Please enter the ISBN of the book: ");
+        String author = input.getStringInput();
+        int isbn = input.getIntInput("Please enter the ISBN of the book: ");
         boolean exists = false;
         for (Book book : books) {
             if (book.getIsbn() == isbn) {
@@ -107,15 +100,15 @@ public class Ness_Connor_A3 {
 //            already exists. If it does, it tells the user and returns
 //            to the main menu. If it does not, the item is added to the
 //            books arraylist.
-    private static void newAudioBook() {
+    private void newAudioBook() {
         System.out.println("Please enter the title of the book: ");
-        String title = getStringInput();
-        double price = getDoubleInput("Please enter the price of" +
+        String title = input.getStringInput();
+        double price = input.getDoubleInput("Please enter the price of" +
                 " the book: ");
         System.out.println("Please enter the Author of the book: ");
-        String author = getStringInput();
-        int isbn = getIntInput("Please enter the ISBN of the book: ");
-        double runtime = getDoubleInput("Please enter the runtime of" +
+        String author = input.getStringInput();
+        int isbn = input.getIntInput("Please enter the ISBN of the book: ");
+        double runtime = input.getDoubleInput("Please enter the runtime of" +
                 " the book: ");
         boolean exists = false;
         for (Book book : books) {
@@ -136,15 +129,15 @@ public class Ness_Connor_A3 {
 //            already exists. If it does, it tells the user and returns
 //            to the main menu. If it does not, the item is added to the
 //            dvds arraylist.
-    private static void newDVD() {
+    private void newDVD() {
         System.out.println("Please enter the title of the DVD: ");
-        String title = getStringInput();
-        double price = getDoubleInput("Please enter the price of" +
+        String title = input.getStringInput();
+        double price = input.getDoubleInput("Please enter the price of" +
                 " the DVD: ");
         System.out.println("Please enter the director of the DVD: ");
-        String director = getStringInput();
-        int year = getIntInput("Please enter the year of the DVD: ");
-        int dvdcode = getIntInput("Please enter the DVDCode of the DVD: ");
+        String director = input.getStringInput();
+        int year = input.getIntInput("Please enter the year of the DVD: ");
+        int dvdcode = input.getIntInput("Please enter the DVDCode of the DVD: ");
         boolean exists = false;
         for (DVD dvd : dvds) {
             if (dvd.getDvdcode() == dvdcode) {
@@ -163,8 +156,8 @@ public class Ness_Connor_A3 {
 //            the books arraylist. It checks to see if the ISBN exists. If
 //            it does not, it notifies the user that the item doesn't exist.
 //            If it does, it removes the item and displays the catalog.
-    private static void removeBook() {
-        int isbn = getIntInput("Enter the ISBN of the item" +
+    private void removeBook() {
+        int isbn = input.getIntInput("Enter the ISBN of the item" +
                 " to be removed: ");
         int index = -1;
         for(int i = 0; i < books.size(); i++) {
@@ -185,8 +178,8 @@ public class Ness_Connor_A3 {
 //            the dvds arraylist. It checks to see if the DVDCode exists. If
 //            it does not, it notifies the user that the item doesn't exist.
 //            If it does, it removes the item and displays the catalog.
-    private static void removeDVD() {
-        int dvdcode = getIntInput("Enter the DVDCode of the item" +
+    private  void removeDVD() {
+        int dvdcode = input.getIntInput("Enter the DVDCode of the item" +
                 " to be removed: ");
         int index = -1;
         for(int i = 0; i < dvds.size(); i++) {
@@ -206,7 +199,7 @@ public class Ness_Connor_A3 {
 //    dispCat simply displays the catalog. It iterates through the books
 //            arraylist, calling toString on each item. It prints a separator,
 //            then prints the contents of the dvds arraylist
-    private static void dispCat() {
+    private  void dispCat() {
         for (Book book : books) {
             System.out.println(book.toString());
         }
@@ -216,50 +209,5 @@ public class Ness_Connor_A3 {
         for (DVD dvd : dvds) {
             System.out.println(dvd.toString());
         }
-    }
-
-//    getStringInput gets input from the console. It makes sure that the
-//            input is not empty, then returns the string.
-    private static String getStringInput() {
-        String text = input.nextLine();
-        if(text.isEmpty()) {
-            System.out.println("Please enter non-empty input: ");
-            text = getStringInput();
-        }
-        return text;
-    }
-
-//    getIntInput uses the nextLine and parses into an int, and makes sure
-//            the input is positive.
-    private static int getIntInput(String msg) {
-        int number;
-        System.out.println(msg);
-        try {
-            number = Integer.parseInt(input.nextLine());
-        }
-        catch (NumberFormatException e) {
-            return getIntInput(msg);
-        }
-        if(number < 1) {
-            System.out.println("Please enter an integer greater than 0!");
-            return getIntInput(msg);
-        }
-        return number;
-    }
-
-//    getDoubleInput does the same as getIntInput, but for doubles
-    private static double getDoubleInput(String msg) {
-        double number;
-        System.out.println(msg);
-        try {
-            number = Double.parseDouble(input.nextLine());
-        } catch (NumberFormatException e) {
-            return getDoubleInput(msg);
-        }
-        if(number < 1) {
-            System.out.println("Please enter a number greater than 0!");
-            return getDoubleInput(msg);
-        }
-        return number;
     }
 }

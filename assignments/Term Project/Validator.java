@@ -1,5 +1,5 @@
 import java.util.Scanner;
-
+@SuppressWarnings("Duplicates")
 public class Validator implements Acceptable {
 
     private static Scanner input = new Scanner(System.in);
@@ -16,19 +16,18 @@ public class Validator implements Acceptable {
 
     //    getStringInput gets input from the console. It makes sure that the
     //            input is not empty, then returns the string.
-    public static String getStringInput() {
+    public String getStringInput() {
         String text = input.nextLine();
-        if(text.isEmpty()) {
+        if(!isNonEmptyString(text)) {
             System.out.println("Please enter non-empty input: ");
             text = getStringInput();
         }
         return text;
     }
 
-@SuppressWarnings("Duplicates")
     //    getIntInput uses the nextLine and parses into an int, and makes sure
     //            the input is positive.
-    public static int getIntInput(String msg) {
+    public int getIntInput(String msg) {
         int number;
         System.out.println(msg);
         try {
@@ -44,9 +43,8 @@ public class Validator implements Acceptable {
         return number;
     }
 
-@SuppressWarnings("Duplicates")
     //    getDoubleInput does the same as getIntInput, but for doubles
-    public static double getDoubleInput(String msg) {
+    public double getDoubleInput(String msg) {
         double number;
         System.out.println(msg);
         try {
