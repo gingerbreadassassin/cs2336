@@ -23,7 +23,9 @@ public class  AudioBook extends Book {
     @Override
     public String toString() {
         return String.format(
-                "Title: %20s | Author: %15s | Price: %8s | ISBN: %10d | RunningTime: %7.2f "
-                , super.getTitle(), super.getAuthor(), "$"+df.format(getPrice()), super.getIsbn(), runningTime);
+                "Title: %20s | Author: %15s | Price: %8s" +
+                        " | ISBN: %10d | RunningTime: %7.2f "
+                ,super.getTitle(), super.getAuthor(),
+                "$" + df.format(getPrice()), super.getIsbn(), runningTime);
     }
 }

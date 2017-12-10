@@ -36,7 +36,9 @@ class DVD extends CatalogItem {
     @Override
     public String toString() {
         return String.format(
-                "Title: %20s | Director: %18s | Price: %8s | Year: %4d | DVDCode: %12d"
-                , super.getTitle(), director, "$"+df.format(getPrice()), year, dvdcode);
+                "Title: %20s | Director: %18s | " +
+                        "Price: %8s | Year: %4d | DVDCode: %12d"
+                ,super.getTitle(), director, "$"+ df.format(getPrice()),
+                year, dvdcode);
     }
 }
