@@ -5,7 +5,7 @@ public class Ness_Connor_TP {
     private static ArrayList<Book> books = new ArrayList<>();
     private static ArrayList<DVD> dvds = new ArrayList<>();
     private static Validator input = new Validator();
-    private static CSV credentials = new CSV("credentials.txt");
+    private static CSV credentials = new CSV("assignments\\Term Project\\credentials.txt");
 
     private static Manager manager = new Manager(input, books, dvds);
     private static Customer customer = new Customer(input, books, dvds);

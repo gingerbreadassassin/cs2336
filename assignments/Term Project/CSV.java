@@ -11,19 +11,19 @@ public class CSV {
     }
 
     public boolean contains(String token) {
+        boolean found = false;
         try {
             // FileReader reads text files in the default encoding.
-            FileReader fileReader =
-                    new FileReader(fileName);
+            FileReader fileReader = new FileReader(fileName);
 
             // Always wrap FileReader in BufferedReader.
-            BufferedReader bufferedReader =
-                    new BufferedReader(fileReader);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
 
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 if(token.equals(line)) {
-                    return true;
+                    found = true;
+                    break;
                 }
             }
 
@@ -40,6 +40,6 @@ public class CSV {
             // Or we could just do this:
             // ex.printStackTrace();
         }
-        return false;
+        return found;
     }
 }

@@ -1,5 +1,6 @@
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 
 @SuppressWarnings("Duplicates")
 public class Customer {
@@ -65,7 +66,7 @@ public class Customer {
                 menu();
                 break;
             // Exit the program
-            case 8: break;
+            case 9: break;
             // In case the user enters an invalid input, a message stating as
             //  much is displayed, and returns to the menu.
             default:
@@ -77,22 +78,15 @@ public class Customer {
         }
     }
 
-    // This displayArrays method displays the store's inventory of books or DVDs
-    //  sorted by price from low to high. It creates an array of integers to
-    //  represent the inventory number. It also creates temporary arrays
-    //  matching the books/dvds/prices arrays to avoid sorting the original
-    //  arrays. These temporary arrays are the arrays which are modified by
-    //  the sorting algorithm and ultimately displayed. Note that the sorting
-    //  algorithm analyzes the tempPrices array, but performs the swapping
-    //  operations on all three arrays. Since this is the only time the arrays
-    //  will be sorted, I chose not to create a separate sorting method.
-    private void displayArrays(ArrayList list){}
 
-    // The getInventoryNumber method takes two arrays and a string representing
-    //  the type of items the user wishes to add to their cart. It only accepts
-    //  input within the range of the available inventory, or the special
-    //  escape case (-1). It then calls the addToCart method to add the chosen
-    //  item, if any, to the user's cart.
+    private void displayArrays(ArrayList things){
+        ArrayList<CatalogItem> items = new ArrayList<CatalogItem>(things);
+        Collections.sort(items);
+        for (Object item : items) {
+            System.out.println(item.toString());
+        }
+    }
+
     private void getInventoryNumber(ArrayList list){}
 
     // The checkout method simulates checking out by displaying the total of the
