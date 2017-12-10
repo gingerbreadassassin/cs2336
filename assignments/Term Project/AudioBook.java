@@ -7,11 +7,6 @@ public class  AudioBook extends Book {
         runningTime = RunningTime;
     }
 
-    @Override
-    public double getPrice() {
-        return super.getPrice() * 0.9;
-    }
-
     public double getRunningTime() {
         return runningTime;
     }
