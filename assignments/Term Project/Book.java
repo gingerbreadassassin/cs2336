@@ -29,8 +29,8 @@ class Book extends CatalogItem {
 
     @Override
     public String toString() {
-        return "Title: " + super.getTitle() + " | Author: " + author
-                + " | Price: $" + df.format(super.getPrice()) + " | ISBN: " +
-                isbn;
+        return String.format(
+                "Title: %20s | Author: %15s | Price: %8s | ISBN: %10d"
+                , super.getTitle(), author, "$"+df.format(getPrice()), isbn);
     }
 }
