@@ -1,5 +1,7 @@
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-@SuppressWarnings("Duplicates")
+import java.util.Date;
+
 public class Manager {
 
     private Validator input;
@@ -55,6 +57,10 @@ public class Manager {
                 dispCat();
                 menu();
                 break;
+            case 7:
+                backup();
+                menu();
+                break;
             // Exit the program
             case 9:
                 break;
@@ -68,6 +74,7 @@ public class Manager {
                 break;
         }
     }
+
 //    newBook creates a new object of type "Book". It asks the user
 //            to enter the parameters. It then checks to see if the ISBN
 //            already exists. If it does, it tells the user and returns
@@ -178,7 +185,7 @@ public class Manager {
 //            the dvds arraylist. It checks to see if the DVDCode exists. If
 //            it does not, it notifies the user that the item doesn't exist.
 //            If it does, it removes the item and displays the catalog.
-    private  void removeDVD() {
+    private void removeDVD() {
         int dvdcode = input.getIntInput("Enter the DVDCode of the item" +
                 " to be removed: ");
         int index = -1;
@@ -199,7 +206,7 @@ public class Manager {
 //    dispCat simply displays the catalog. It iterates through the books
 //            arraylist, calling toString on each item. It prints a separator,
 //            then prints the contents of the dvds arraylist
-    private  void dispCat() {
+    private void dispCat() {
         for (Book book : books) {
             System.out.println(book.toString());
         }
@@ -210,4 +217,19 @@ public class Manager {
             System.out.println(dvd.toString());
         }
     }
+
+    private void backup() {
+        SimpleDateFormat dt = new SimpleDateFormat("yyyy_MM-dd_hh_mm_ss");
+        String fileName = "catalog_backup_" + dt.format(new Date()) + ".txt";
+        FileOp bu = new FileOp(fileName);
+        for (Book book : books) {
+            bu.add(book.toString() + "\n");
+        }
+        for (DVD dvd : dvds) {
+            bu.add(dvd.toString() + "\n");
+        }
+        System.out.println("Backup saved as: " + fileName);
+    }
+
+
 }

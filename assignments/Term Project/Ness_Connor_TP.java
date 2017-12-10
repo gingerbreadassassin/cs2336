@@ -1,11 +1,10 @@
 import java.util.ArrayList;
-@SuppressWarnings("Duplicates")
 public class Ness_Connor_TP {
 
     private static ArrayList<Book> books = new ArrayList<>();
     private static ArrayList<DVD> dvds = new ArrayList<>();
     private static Validator input = new Validator();
-    private static CSV credentials = new CSV("assignments\\Term Project\\credentials.txt");
+    private static FileOp credentials = new FileOp("credentials.txt");
 
     private static Manager manager = new Manager(input, books, dvds);
     private static Customer customer = new Customer(input, books, dvds);
@@ -25,10 +24,10 @@ public class Ness_Connor_TP {
                 "C - exit store%n"
         );
 
-        char choice = input.getStringInput().charAt(0);
+        String choice = input.getStringInput().toUpperCase();
 
         switch(choice) {
-            case 'A':
+            case "A":
                 if(login()) {
                     manager.menu();
                 }
@@ -37,11 +36,11 @@ public class Ness_Connor_TP {
                 }
                 menu();
                 break;
-            case 'B':
+            case "B":
                 customer.menu();
                 menu();
                 break;
-            case 'C':
+            case "C":
                 break;
             default:
                 System.out.println(

@@ -2,7 +2,6 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 
-@SuppressWarnings("Duplicates")
 public class Customer {
 
     // This DecimalFormat object makes displaying doubles as dollars convenient.
@@ -17,6 +16,7 @@ public class Customer {
         input = i;
         books = b;
         dvds = d;
+        cart = new ArrayList<>();
     }
 
     public void menu() {
@@ -37,32 +37,31 @@ public class Customer {
 
         switch(choice) {
             // Display the store's inventory of books and dvds, respectively.
-            //  Pass the correct arrays and strings to modify the text
-            //  displayed to reflect the correct type.
             case 1: displayArrays(books);
                 menu();
                 break;
             case 2: displayArrays(dvds);
                 menu();
                 break;
-            // Add the user's desired book/dvd to their cart
-            case 3: getInventoryNumber(books);
+            // Add/remove the user's desired book/dvd to/from their cart
+            case 3: addBookToCart();
                 menu();
                 break;
-            case 4: getInventoryNumber(dvds);
+            case 4: addDVDToCart();
                 menu();
                 break;
-            // Display the user's cart
-            case 5: displayArrays(cart);
+            case 5: removeBook();
                 menu();
                 break;
-            // Display the total and clear the user's cart
-            case 6: checkout();
+            case 6: removeDVD();
+                menu();
+                break;
+            // Show the user's cart
+            case 7: displayArrays(cart);
+                menu();
+                break;
+            case 8: checkout();
                 cart.clear();
-                menu();
-                break;
-            // Clear the user's cart
-            case 7: cart.clear();
                 menu();
                 break;
             // Exit the program
@@ -87,20 +86,76 @@ public class Customer {
         }
     }
 
-    private void getInventoryNumber(ArrayList list){}
+    private void removeBook() {
+        int isbn = input.getIntInput("Please enter the ISBN of " +
+                "the book you wish to remove from your cart: ");
+        for(CatalogItem item : cart) {
+            if(item instanceof Book) {
+                if(((Book) item).getIsbn() == isbn) {
+                    cart.remove(item);
+                    return;
+                }
+            }
+        }
+        System.out.println("The book with ISBN: " + isbn + " was not found!");
+    }
 
-    // The checkout method simulates checking out by displaying the total of the
-    //  user's cart. It calls the getTotal method to get a string representation
-    //  of the total plus tax.
+    private void removeDVD() {
+        int dvdc = input.getIntInput("Please enter the DVDCode of " +
+                "the DVD you wish to remove from your cart: ");
+        for(CatalogItem item : cart) {
+            if(item instanceof DVD) {
+                if(((DVD) item).getDvdcode() == dvdc) {
+                    cart.remove(item);
+                    return;
+                }
+            }
+        }
+        System.out.println("The DVD with code: " + dvdc + " was not found!");
+    }
+
+    private void addBookToCart() {
+        int isbn = input.getIntInput("Please enter the ISBN of " +
+                "the book you wish to add to your cart: ");
+        for(Book book : books) {
+            if(book.getIsbn() == isbn) {
+                if(book instanceof AudioBook) {
+                    cart.add(new AudioBook(book.getTitle(),
+                            book.getPrice()*book.getDiscount(),
+                            book.getAuthor(), book.getIsbn(),
+                            ((AudioBook) book).getRunningTime()));
+                }
+                else {
+                    cart.add(new Book(book.getTitle(),
+                        book.getPrice()*book.getDiscount(),
+                        book.getAuthor(), book.getIsbn()));
+                }
+                return;
+            }
+        }
+        System.out.println("The book with ISBN: " + isbn + " was not found!");
+    }
+
+    private void addDVDToCart() {
+        int dvdc = input.getIntInput("Please enter the DVDCode of the" +
+                " DVD you wish to add to your cart: ");
+        for(DVD dvd : dvds) {
+            if(dvd.getDvdcode() == dvdc) {
+                cart.add(new DVD(dvd));
+                return;
+            }
+        }
+        System.out.println("The DVD with code: " + dvdc + " was not found!");
+    }
+
+
     private void checkout() {
         System.out.printf(
                 "Total + Tax %12s%n", getTotal(cart)
         );
     }
 
-    // The getTotal method takes an array of doubles and sums the contents. This
-    //  sum has tax applied and is then converted to a string representation
-    //  with a dollar sign and two decimal places before returning this string.
+
     private static String getTotal(ArrayList<CatalogItem> items) {
         double dTotal = 0.0;
         for (CatalogItem item : items) {

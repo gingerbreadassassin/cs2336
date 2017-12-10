@@ -1,9 +1,3 @@
-/*
-Filename:   AudioBook.java
-Author:     Connor Ness
-Date:       November 1, 2017
- */
-
 import java.text.DecimalFormat;
 
 public class  AudioBook extends Book {
@@ -11,14 +5,9 @@ public class  AudioBook extends Book {
     private static DecimalFormat df = new DecimalFormat("#.00");
     private double runningTime;
 
-    public AudioBook() {
-        super();
-        runningTime = 0.0;
-    }
-
     public AudioBook(String Title, double Price, String Author, int ISBN,
                      double RunningTime) {
-        super(Title, Price, Author, ISBN);
+        super(Title, Price, Author, ISBN, 0.5);
         runningTime = RunningTime;
     }
 

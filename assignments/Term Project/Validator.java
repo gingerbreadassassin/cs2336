@@ -1,5 +1,4 @@
 import java.util.Scanner;
-@SuppressWarnings("Duplicates")
 public class Validator implements Acceptable {
 
     private static Scanner input = new Scanner(System.in);
@@ -36,7 +35,7 @@ public class Validator implements Acceptable {
         catch (NumberFormatException e) {
             return getIntInput(msg);
         }
-        if(number < 1) {
+        if(!isPositiveInput(number)) {
             System.out.println("Please enter an integer greater than 0!");
             return getIntInput(msg);
         }
@@ -52,7 +51,7 @@ public class Validator implements Acceptable {
         } catch (NumberFormatException e) {
             return getDoubleInput(msg);
         }
-        if(number < 1) {
+        if(!isPositiveInput(number)) {
             System.out.println("Please enter a number greater than 0!");
             return getDoubleInput(msg);
         }

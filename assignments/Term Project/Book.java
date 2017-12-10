@@ -1,8 +1,3 @@
-/*
-Filename:   Book.java
-Author:     Connor Ness
-Date:       November 1, 2017
- */
 import java.text.DecimalFormat;
 
 class Book extends CatalogItem {
@@ -11,14 +6,15 @@ class Book extends CatalogItem {
     private String author;
     private int isbn;
 
-    public Book() {
-        super();
-        author = "default";
-        isbn = 0;
+    public Book(String Title, double Price, String Author, int ISBN) {
+        super(Title, Price, 0.9);
+        author = Author;
+        isbn = ISBN;
     }
 
-    public Book(String Title, double Price, String Author, int ISBN) {
-        super(Title, Price);
+    protected Book(String Title, double Price, String Author, int ISBN,
+                   double Discount) {
+        super(Title, Price, Discount);
         author = Author;
         isbn = ISBN;
     }

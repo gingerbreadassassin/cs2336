@@ -1,13 +1,31 @@
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
-public class CSV {
+public class FileOp {
     private String fileName;
 
-    CSV(String file) {
+    FileOp(String file) {
         fileName = file;
+    }
+
+    public void add(String line) {
+        try {
+            // Assume default encoding.
+            FileWriter fileWriter = new FileWriter(fileName, true);
+
+            // Always wrap FileWriter in BufferedWriter.
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            bufferedWriter.write(line);
+
+            // Always close files.
+            bufferedWriter.close();
+        }
+        catch(IOException ex) {
+            System.out.println(
+                    "Error writing to file '"
+                            + fileName + "'");
+            // Or we could just do this:
+            // ex.printStackTrace();
+        }
     }
 
     public boolean contains(String token) {

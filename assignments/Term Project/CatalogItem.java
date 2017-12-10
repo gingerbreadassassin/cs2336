@@ -1,26 +1,19 @@
-/*
-Filename:   CatalogItem.java
-Author:     Connor Ness
-Date:       November 1, 2017
- */
-
 public abstract class CatalogItem implements Comparable<CatalogItem>{
     private String title;
     private double price;
+    private double discount;
 
-    public CatalogItem() {
-        title = "default";
-        price = 0.00;
-    }
-
-    public CatalogItem(String Title, double Price) {
+    public CatalogItem(String Title, double Price, double Discount) {
         title = Title;
         price = Price;
+        discount = Discount;
     }
 
     public double getPrice() {
         return price;
     }
+
+    public double getDiscount() {return discount;}
 
     public String getTitle() {
         return title;

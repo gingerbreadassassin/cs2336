@@ -1,9 +1,3 @@
-/*
-Filename:   DVD.java
-Author:     Connor Ness
-Date:       November 1, 2017
- */
-
 import java.text.DecimalFormat;
 
 class DVD extends CatalogItem {
@@ -12,18 +6,19 @@ class DVD extends CatalogItem {
     private String director;
     private int year, dvdcode;
 
-    public DVD() {
-        super();
-        director = "default";
-        year = dvdcode = 0;
-    }
-
     public DVD(String Title, double Price, String Director, int Year,
                int DVDcode) {
-        super(Title, Price);
+        super(Title, Price, 0.8);
         director = Director;
         year = Year;
         dvdcode = DVDcode;
+    }
+
+    public DVD(DVD n) {
+        super(n.getTitle(), n.getPrice()*0.8, 0.8);
+        director = n.getDirector();
+        year = n.getYear();
+        dvdcode = n.getDvdcode();
     }
 
     public int getDvdcode() {
