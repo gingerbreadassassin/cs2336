@@ -1,4 +1,7 @@
+import java.text.DecimalFormat;
+
 public abstract class CatalogItem implements Comparable<CatalogItem>{
+    protected static DecimalFormat df = new DecimalFormat("#.00");
     private String title;
     private double price;
     private double discount;

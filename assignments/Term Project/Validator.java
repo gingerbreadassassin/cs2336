@@ -10,7 +10,7 @@ public class Validator implements Acceptable {
 
     @Override
     public boolean isPositiveInput(double d) {
-        return d > 0;
+        return d >= 0;
     }
 
     //    getStringInput gets input from the console. It makes sure that the

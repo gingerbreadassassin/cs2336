@@ -1,8 +1,6 @@
-import java.text.DecimalFormat;
-
 class Book extends CatalogItem {
     // This DecimalFormat object makes displaying doubles as dollars convenient.
-    private static DecimalFormat df = new DecimalFormat("#.00");
+
     private String author;
     private int isbn;
 

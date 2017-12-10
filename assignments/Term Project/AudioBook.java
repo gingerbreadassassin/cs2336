@@ -1,8 +1,4 @@
-import java.text.DecimalFormat;
-
 public class  AudioBook extends Book {
-    // This DecimalFormat object makes displaying doubles as dollars convenient.
-    private static DecimalFormat df = new DecimalFormat("#.00");
     private double runningTime;
 
     public AudioBook(String Title, double Price, String Author, int ISBN,

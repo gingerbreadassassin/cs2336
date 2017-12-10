@@ -1,8 +1,4 @@
-import java.text.DecimalFormat;
-
 class DVD extends CatalogItem {
-    // This DecimalFormat object makes displaying doubles as dollars convenient.
-    private static DecimalFormat df = new DecimalFormat("#.00");
     private String director;
     private int year, dvdcode;
 
