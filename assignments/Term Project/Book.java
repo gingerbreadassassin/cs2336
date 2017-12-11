@@ -22,6 +22,12 @@ class Book extends CatalogItem {
         isbn = ISBN;
     }
 
+    public Book(Book n) {
+        super(n.getTitle(), n.getPrice(), n.getDiscount());
+        this.author = n.getAuthor();
+        this.isbn = n.getIsbn();
+    }
+
     public int getIsbn() {
         return isbn;
     }
@@ -33,7 +39,7 @@ class Book extends CatalogItem {
     @Override
     public String toString() {
         return String.format(
-                "Title: %20s | Author: %15s | Price: %8s | ISBN: %10d"
-                , super.getTitle(), author, "$" + df.format(getPrice()), isbn);
+                "Title: %20s | Author: %15s | Price: %8s | ISBN: %10d",
+                super.getTitle(), author, "$" + df.format(getPrice()), isbn);
     }
 }

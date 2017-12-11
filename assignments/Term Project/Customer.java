@@ -52,10 +52,10 @@ public class Customer {
 
         switch(choice) {
             // Display the store's inventory of books and dvds, respectively.
-            case 1: displayArrays(books);
+            case 1: displayArrays(books, true);
                 menu();
                 break;
-            case 2: displayArrays(dvds);
+            case 2: displayArrays(dvds, true);
                 menu();
                 break;
             // Add/remove the user's desired book/dvd to/from their cart
@@ -72,7 +72,7 @@ public class Customer {
                 menu();
                 break;
             // Show the user's cart
-            case 7: displayArrays(cart);
+            case 7: displayArrays(cart, false);
                 menu();
                 break;
             // show the user's total and clear the cart (checkout)
@@ -95,12 +95,25 @@ public class Customer {
 
 //  displayArrays iterates through a list of CatalogItems and prints their
 //      toString
-    private void displayArrays(ArrayList things){
+    private void displayArrays(ArrayList things, boolean applyDiscount){
         ArrayList<CatalogItem> items = new ArrayList<>();
         for (Object thing : things) {
             if (thing instanceof CatalogItem) {
-                CatalogItem n = (CatalogItem) thing;
-                n.setPrice(n.getPrice()*n.getDiscount());
+                CatalogItem n;
+                if (thing instanceof Book) {
+                    if(thing instanceof AudioBook) {
+                        n = new AudioBook((AudioBook) thing);
+                    }
+                    else {
+                        n = new Book((Book) thing);
+                    }
+                }
+                else{
+                    n = new DVD((DVD) thing);
+                }
+                if(applyDiscount) {
+                    n.setPrice(n.getPrice() * n.getDiscount());
+                }
                 items.add(n);
             }
         }
@@ -146,17 +159,16 @@ public class Customer {
                 "the book you wish to addLine to your cart: ");
         for(Book book : books) {
             if(book.getIsbn() == isbn) {
+                Book n;
                 if(book instanceof AudioBook) {
-                    cart.add(new AudioBook(book.getTitle(),
-                            book.getPrice()*book.getDiscount(),
-                            book.getAuthor(), book.getIsbn(),
-                            ((AudioBook) book).getRunningTime()));
+                    n = new AudioBook((AudioBook) book);
+                    n.setPrice(n.getPrice()*n.getDiscount());
                 }
                 else {
-                    cart.add(new Book(book.getTitle(),
-                        book.getPrice()*book.getDiscount(),
-                        book.getAuthor(), book.getIsbn()));
+                    n = new Book(book);
+                    n.setPrice(n.getPrice()*n.getDiscount());
                 }
+                cart.add(n);
                 return;
             }
         }
@@ -169,7 +181,9 @@ public class Customer {
                 " DVD you wish to addLine to your cart: ");
         for(DVD dvd : dvds) {
             if(dvd.getDvdcode() == dvdc) {
-                cart.add(new DVD(dvd));
+                DVD n = new DVD(dvd);
+                n.setPrice(n.getPrice()*n.getDiscount());
+                cart.add(n);
                 return;
             }
         }

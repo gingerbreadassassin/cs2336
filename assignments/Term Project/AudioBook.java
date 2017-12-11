@@ -13,6 +13,11 @@ public class  AudioBook extends Book {
         runningTime = RunningTime;
     }
 
+    public AudioBook(AudioBook n) {
+        super(n);
+        this.runningTime = n.getRunningTime();
+    }
+
     public double getRunningTime() {
         return runningTime;
     }

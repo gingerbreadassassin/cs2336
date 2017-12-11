@@ -17,7 +17,7 @@ class DVD extends CatalogItem {
     }
 
     public DVD(DVD n) {
-        super(n.getTitle(), n.getPrice()*0.8, 0.8);
+        super(n.getTitle(), n.getPrice(), 0.8);
         director = n.getDirector();
         year = n.getYear();
         dvdcode = n.getDvdcode();
