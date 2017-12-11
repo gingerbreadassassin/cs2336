@@ -34,6 +34,6 @@ class Book extends CatalogItem {
     public String toString() {
         return String.format(
                 "Title: %20s | Author: %15s | Price: %8s | ISBN: %10d"
-                , super.getTitle(), author, "$"+df.format(getPrice()), isbn);
+                , super.getTitle(), author, "$" + df.format(getPrice()), isbn);
     }
 }

@@ -99,7 +99,9 @@ public class Customer {
         ArrayList<CatalogItem> items = new ArrayList<>();
         for (Object thing : things) {
             if (thing instanceof CatalogItem) {
-                items.add((CatalogItem) thing);
+                CatalogItem n = (CatalogItem) thing;
+                n.setPrice(n.getPrice()*n.getDiscount());
+                items.add(n);
             }
         }
         Collections.sort(items);

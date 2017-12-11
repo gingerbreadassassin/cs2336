@@ -238,10 +238,12 @@ public class Manager {
         String fileName = "catalog_backup_" + dt.format(new Date()) + ".txt";
         FileOp bu = new FileOp(fileName);
         for (Book book : books) {
-            bu.addLine(book.toString() + "\n");
+            bu.addLine(book.toString() + " | Discount: "
+                    + book.getDiscount() + "\n");
         }
         for (DVD dvd : dvds) {
-            bu.addLine(dvd.toString() + "\n");
+            bu.addLine(dvd.toString() + " | Discount: "
+                    + dvd.getDiscount() + "\n");
         }
         System.out.println("Backup saved as: " + fileName);
     }

@@ -30,6 +30,8 @@ public abstract class CatalogItem implements Comparable<CatalogItem>{
 
     public String toString(){return null;}
 
+    public void setPrice(double p) {price = p;}
+
     // CatalogItem implements the Comparable.compareTo method so that
     //  two CatalogItem objects can be compared base on price.
     @Override
