@@ -96,7 +96,12 @@ public class Customer {
 //  displayArrays iterates through a list of CatalogItems and prints their
 //      toString
     private void displayArrays(ArrayList things){
-        ArrayList<CatalogItem> items = new ArrayList<CatalogItem>(things);
+        ArrayList<CatalogItem> items = new ArrayList<>();
+        for (Object thing : things) {
+            if (thing instanceof CatalogItem) {
+                items.add((CatalogItem) thing);
+            }
+        }
         Collections.sort(items);
         for (Object item : items) {
             System.out.println(item.toString());
