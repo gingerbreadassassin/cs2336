@@ -2,6 +2,15 @@
 Filename:   Customer.java
 Author:     Connor Ness
 Date:       December 10, 2017
+
+The Customer class is an adaptation of Assignment 2 to the term project. Instead
+ of owning its own Scanner object, it uses a Validator object to handle user
+ input and validate it. Customer requires three parameters when instantiated:
+ a Validator object, an ArrayList of Book objects, and an ArrayList of DVD
+ objects.
+
+It uses an ArrayList of CatalogItems to represent the user's cart, as the user
+ may wish to buy more than one type of item at a time.
  */
 
 import java.text.DecimalFormat;
@@ -66,6 +75,7 @@ public class Customer {
             case 7: displayArrays(cart);
                 menu();
                 break;
+            // show the user's total and clear the cart (checkout)
             case 8: checkout();
                 cart.clear();
                 menu();
@@ -83,7 +93,8 @@ public class Customer {
         }
     }
 
-
+//  displayArrays iterates through a list of CatalogItems and prints their
+//      toString
     private void displayArrays(ArrayList things){
         ArrayList<CatalogItem> items = new ArrayList<CatalogItem>(things);
         Collections.sort(items);
@@ -92,6 +103,7 @@ public class Customer {
         }
     }
 
+//  removeBook removes a Book or AudioBook from the cart
     private void removeBook() {
         int isbn = input.getIntInput("Please enter the ISBN of " +
                 "the book you wish to remove from your cart: ");
@@ -106,6 +118,7 @@ public class Customer {
         System.out.println("The book with ISBN: " + isbn + " was not found!");
     }
 
+//  removeDVD removes a DVD from the cart
     private void removeDVD() {
         int dvdc = input.getIntInput("Please enter the DVDCode of " +
                 "the DVD you wish to remove from your cart: ");
@@ -120,9 +133,10 @@ public class Customer {
         System.out.println("The DVD with code: " + dvdc + " was not found!");
     }
 
+//  addBookToCart adds a Book or AudioBook to the cart
     private void addBookToCart() {
         int isbn = input.getIntInput("Please enter the ISBN of " +
-                "the book you wish to add to your cart: ");
+                "the book you wish to addLine to your cart: ");
         for(Book book : books) {
             if(book.getIsbn() == isbn) {
                 if(book instanceof AudioBook) {
@@ -142,9 +156,10 @@ public class Customer {
         System.out.println("The book with ISBN: " + isbn + " was not found!");
     }
 
+//  addDVDToCart adds a DVD to the cart
     private void addDVDToCart() {
         int dvdc = input.getIntInput("Please enter the DVDCode of the" +
-                " DVD you wish to add to your cart: ");
+                " DVD you wish to addLine to your cart: ");
         for(DVD dvd : dvds) {
             if(dvd.getDvdcode() == dvdc) {
                 cart.add(new DVD(dvd));
@@ -154,14 +169,14 @@ public class Customer {
         System.out.println("The DVD with code: " + dvdc + " was not found!");
     }
 
-
+//  Checkout prints the user's total and tax
     private void checkout() {
         System.out.printf(
                 "Total + Tax %12s%n", getTotal(cart)
         );
     }
 
-
+//  getTotal iterates through an ArrayList of CatalogItems and sums the prices
     private static String getTotal(ArrayList<CatalogItem> items) {
         double dTotal = 0.0;
         for (CatalogItem item : items) {

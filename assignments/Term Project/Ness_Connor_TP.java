@@ -2,6 +2,13 @@
 Filename:   Ness_Connor_TP.java
 Author:     Connor Ness
 Date:       December 10, 2017
+
+Ness_Connor_TP unifies assigments 2 and 3 into a single application, simulating
+ a bookstore. It has two modes: a management side and a customer-facing side.
+ It instantiates the ArrayLists for Books and DVDs, so that these lists are
+ accessible throughout the whole program. It also instantiates a Validator and
+ FileOp objects. The Validator object is shared by all classes, while the FileOp
+ object is used solely for authentication of a manager.
  */
 
 import java.util.ArrayList;
@@ -12,6 +19,7 @@ public class Ness_Connor_TP {
     private static Validator input = new Validator();
     private static FileOp credentials = new FileOp("credentials.txt");
 
+    // the Management and customer UI's are distinct objects
     private static Manager manager = new Manager(input, books, dvds);
     private static Customer customer = new Customer(input, books, dvds);
 
@@ -30,6 +38,7 @@ public class Ness_Connor_TP {
                 "C - exit store%n"
         );
 
+        // Make the user's life a little easier by autocapitalizing input
         String choice = input.getStringInput().toUpperCase();
 
         switch(choice) {
@@ -57,6 +66,8 @@ public class Ness_Connor_TP {
         }
     }
 
+//  login asks the user for their username and password, concatenates them
+//   with a comma, and searches the credentials file for a match
     private static boolean login() {
         System.out.printf("Please enter your username: ");
         String uid = input.getStringInput();

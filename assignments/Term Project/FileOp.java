@@ -2,6 +2,9 @@
 Filename:   FileOp.java
 Author:     Connor Ness
 Date:       December 10, 2017
+
+FileOp handles all of the file operations. It either appends a line to a file
+ or scans a file, line by line, searching for a match.
  */
 
 import java.io.*;
@@ -13,7 +16,8 @@ public class FileOp {
         fileName = file;
     }
 
-    public void add(String line) {
+    // addLine adds a line to the file.
+    public void addLine(String line) {
         try {
             // Assume default encoding.
             FileWriter fileWriter = new FileWriter(fileName, true);
@@ -29,11 +33,11 @@ public class FileOp {
             System.out.println(
                     "Error writing to file '"
                             + fileName + "'");
-            // Or we could just do this:
-            // ex.printStackTrace();
         }
     }
 
+//  contains looks through the file, line by line, and returns a boolean value
+//   whether the target value (token) was found
     public boolean contains(String token) {
         boolean found = false;
         try {
@@ -61,8 +65,6 @@ public class FileOp {
             System.out.println(
                     "Error reading file '"
                             + fileName + "'");
-            // Or we could just do this:
-            // ex.printStackTrace();
         }
         return found;
     }

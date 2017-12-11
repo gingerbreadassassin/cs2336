@@ -5,7 +5,6 @@ Date:       December 10, 2017
  */
 
 class Book extends CatalogItem {
-    // This DecimalFormat object makes displaying doubles as dollars convenient.
 
     private String author;
     private int isbn;

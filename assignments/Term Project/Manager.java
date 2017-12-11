@@ -2,6 +2,12 @@
 Filename:   Manager.java
 Author:     Connor Ness
 Date:       December 10, 2017
+
+The Manager class is an adaptation of Assignment 3 to the term project. Instead
+ of owning its own Scanner object, it uses a Validator object to handle user
+ input and validate it. Manager requires three parameters when instantiated:
+ a Validator object, an ArrayList of Book objects, and an ArrayList of DVD
+ objects.
  */
 
 import java.text.SimpleDateFormat;
@@ -35,6 +41,7 @@ public class Manager {
                         "7 - Create backup file%n" +
                         "9 - Exit Catalog section%n"
         );
+
         int choice = input.getIntInput("");
 
 
@@ -224,18 +231,18 @@ public class Manager {
         }
     }
 
+//      backup iterates through both books and dvds and prints the "toString"
+//          as a line in a file named catalog_backup_yyyy_MM_dd_hh_mm_ss
     private void backup() {
-        SimpleDateFormat dt = new SimpleDateFormat("yyyy_MM-dd_hh_mm_ss");
+        SimpleDateFormat dt = new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss");
         String fileName = "catalog_backup_" + dt.format(new Date()) + ".txt";
         FileOp bu = new FileOp(fileName);
         for (Book book : books) {
-            bu.add(book.toString() + "\n");
+            bu.addLine(book.toString() + "\n");
         }
         for (DVD dvd : dvds) {
-            bu.add(dvd.toString() + "\n");
+            bu.addLine(dvd.toString() + "\n");
         }
         System.out.println("Backup saved as: " + fileName);
     }
-
-
 }

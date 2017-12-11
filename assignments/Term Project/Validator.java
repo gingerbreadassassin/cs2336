@@ -2,6 +2,15 @@
 Filename:   Validator.java
 Author:     Connor Ness
 Date:       December 10, 2017
+
+Validator centralizes the validation of user input into a single class. It
+ also centralizes all of user input into a single class, so there's only one
+ instance of the Scanner class.
+
+It implements the Acceptable interface, but this is only by requirement of
+ the assignment. In fact, the Acceptable interface is only such by technicality.
+ The two methods are literally just negations of what previously were single-
+ line comparisons or calls to native methods.
  */
 
 import java.util.Scanner;
