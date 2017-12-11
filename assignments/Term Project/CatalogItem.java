@@ -1,3 +1,9 @@
+/*
+Filename:   CatalogItem.java
+Author:     Connor Ness
+Date:       December 10, 2017
+ */
+
 import java.text.DecimalFormat;
 
 public abstract class CatalogItem implements Comparable<CatalogItem>{
@@ -24,6 +30,8 @@ public abstract class CatalogItem implements Comparable<CatalogItem>{
 
     public String toString(){return null;}
 
+    // CatalogItem implements the Comparable.compareTo method so that
+    //  two CatalogItem objects can be compared base on price.
     @Override
     public int compareTo(CatalogItem o) {
 

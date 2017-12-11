@@ -1,3 +1,9 @@
+/*
+Filename:   Manager.java
+Author:     Connor Ness
+Date:       December 10, 2017
+ */
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;

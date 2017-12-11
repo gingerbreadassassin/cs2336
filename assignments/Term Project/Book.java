@@ -1,3 +1,9 @@
+/*
+Filename:   Book.java
+Author:     Connor Ness
+Date:       December 10, 2017
+ */
+
 class Book extends CatalogItem {
     // This DecimalFormat object makes displaying doubles as dollars convenient.
 

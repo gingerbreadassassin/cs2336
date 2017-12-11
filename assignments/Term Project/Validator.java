@@ -1,3 +1,9 @@
+/*
+Filename:   Validator.java
+Author:     Connor Ness
+Date:       December 10, 2017
+ */
+
 import java.util.Scanner;
 public class Validator implements Acceptable {
 

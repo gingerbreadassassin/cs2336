@@ -1,3 +1,9 @@
+/*
+Filename:   Customer.java
+Author:     Connor Ness
+Date:       December 10, 2017
+ */
+
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;

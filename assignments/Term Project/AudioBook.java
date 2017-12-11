@@ -1,3 +1,9 @@
+/*
+Filename:   AudioBook.java
+Author:     Connor Ness
+Date:       December 10, 2017
+ */
+
 public class  AudioBook extends Book {
     private double runningTime;
 

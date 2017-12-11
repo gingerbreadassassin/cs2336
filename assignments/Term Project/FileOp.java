@@ -1,3 +1,9 @@
+/*
+Filename:   FileOp.java
+Author:     Connor Ness
+Date:       December 10, 2017
+ */
+
 import java.io.*;
 
 public class FileOp {

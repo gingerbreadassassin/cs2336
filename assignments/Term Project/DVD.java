@@ -1,3 +1,9 @@
+/*
+Filename:   DVD.java
+Author:     Connor Ness
+Date:       December 10, 2017
+ */
+
 class DVD extends CatalogItem {
     private String director;
     private int year, dvdcode;
