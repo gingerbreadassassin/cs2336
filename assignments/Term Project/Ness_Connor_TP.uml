@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="616.0" y="0.0">Customer</node>
+    <node x="700.0" y="591.0">Ness_Connor_TP</node>
+    <node x="0.0" y="591.0">Manager</node>
+    <node x="169.25000000000003" y="0.0">CatalogItem</node>
+    <node x="0.0" y="931.0">FileOp</node>
+    <node x="317.0" y="236.0">DVD</node>
+    <node x="16.0" y="247.0">Book</node>
+    <node x="405.0" y="591.0">Acceptable</node>
+    <node x="0.0" y="449.0">AudioBook</node>
+    <node x="405.0" y="714.0">Validator</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="DVD" target="CatalogItem">
+      <point x="0.0" y="-81.5" />
+      <point x="444.0" y="211.0" />
+      <point x="365.75" y="211.0" />
+      <point x="65.5" y="93.0" />
+    </edge>
+    <edge source="Book" target="CatalogItem">
+      <point x="5.6843418860808015E-14" y="-70.5" />
+      <point x="156.50000000000006" y="211.0" />
+      <point x="234.75000000000003" y="211.0" />
+      <point x="-65.5" y="93.0" />
+    </edge>
+    <edge source="AudioBook" target="Book">
+      <point x="0.0" y="-48.5" />
+      <point x="0.0" y="70.5" />
+    </edge>
+    <edge source="Validator" target="Acceptable">
+      <point x="0.0" y="-81.5" />
+      <point x="0.0" y="36.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.7000000000000001" x="754.8845727286136" y="371.9438902629305" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+    <Category>Constructors</Category>
+    <Category>Properties</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
