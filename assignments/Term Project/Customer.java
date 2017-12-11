@@ -94,7 +94,10 @@ public class Customer {
     }
 
 //  displayArrays iterates through a list of CatalogItems and prints their
-//      toString
+//      toString. The applyDiscount toggles whether to display the discounted
+//      price. Without this, the discount would be shown on top of the discount
+//      We don't want to modify the original list, so we create a new one and
+//      add elements as necessary.
     private void displayArrays(ArrayList things, boolean applyDiscount){
         ArrayList<CatalogItem> items = new ArrayList<>();
         for (Object thing : things) {
@@ -154,6 +157,8 @@ public class Customer {
     }
 
 //  addBookToCart adds a Book or AudioBook to the cart
+//   It creates a new Book/AudioBook object, applies the discount, and adds to
+//   the user's cart
     private void addBookToCart() {
         int isbn = input.getIntInput("Please enter the ISBN of " +
                 "the book you wish to addLine to your cart: ");
@@ -176,6 +181,8 @@ public class Customer {
     }
 
 //  addDVDToCart adds a DVD to the cart
+//   It creates a new DVD object, applies the discount, and adds to
+//   the user's cart
     private void addDVDToCart() {
         int dvdc = input.getIntInput("Please enter the DVDCode of the" +
                 " DVD you wish to addLine to your cart: ");
